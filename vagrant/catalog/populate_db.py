@@ -44,26 +44,50 @@ session.commit()
 
 item1 = Items(name='Soccer Cleats',
               date=datetime.datetime.now(),
-              description='Soccer shoes, soccer cleats, soccer boots',
+              description="""Soccer shoes, soccer cleats, soccer boots
+              whatever the name, most of the time a soccer shoe is a
+              firm ground soccer shoe. Firm ground is the classic
+              soccer shoe with cleats/studs designed to provide
+              traction and stability on most natural grass,
+              outdoor soccer fields""",
               category_id=1,
               user_id=1)
 session.add(item1)
 session.commit()
 
-item2 = Items(name="Football Boots",
+item2 = Items(name='Shin Guards',
               date=datetime.datetime.now(),
-              description="Shoes to play football in.",
-              category_id=2,
+              description="""Take on the competition with confidence-soccer
+              shin guards are one of the most important pieces of equipment
+              you'll wear on the pitch. Whether you're an experienced athlete
+              or a novice on the field, find the pair of soccer shin guards
+              that shield and protect without hindering your mobility.""",
+              category_id=1,
               user_id=1)
 session.add(item2)
 session.commit()
 
-item3 = Items(name="Football Shirt",
+item3 = Items(name="Football Boots",
               date=datetime.datetime.now(),
-              description="Shirt to play football in.",
+              description="""Football boots, called cleats or soccer shoes
+              in North America, are an item of footwear worn when playing
+              football. Those designed for grass pitches have
+              studs on the outsole to aid grip.""",
               category_id=2,
               user_id=1)
 session.add(item3)
+session.commit()
+
+item4 = Items(name="Football Shirt",
+              date=datetime.datetime.now(),
+              description="""In association football, kit
+              (also referred to as strip or soccer uniform) is the
+              standard equipment and attire worn by players. ...
+              Footballers generally wear identifying numbers on
+              the backs of their shirts.""",
+              category_id=2,
+              user_id=1)
+session.add(item4)
 session.commit()
 
 print('data is added')
