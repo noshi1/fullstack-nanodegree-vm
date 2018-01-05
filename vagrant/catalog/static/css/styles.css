@@ -110,6 +110,12 @@ main h3{
 .category{
   padding: 20px;
 }
+p a{
+  color: blue;
+}
+p a:hover{
+  text-decoration: underline;
+}
 /* flash message styling */
 .flash_message{
   text-align: center;

@@ -16,6 +16,7 @@
       <aside class="categories">
         <h2>Categories</h2>
         <section class="category">
+          {% include "flash.html" %}
           {% if "username" in session %}
           <a class="add_category" href='{{url_for("newCategory", categories = categories)}}'>Add Category</a>
           {% endif %}
@@ -30,7 +31,6 @@
       <section class="details">
         <h2>Latest Items</h2>
         <section class="content">
-          {% include "flash.html" %}
           {% for i in items %}
             <h3><a href='{{url_for("showItem", category_id = i.category_id, item_id = i.id)}}'>{{i.name}}</a><span> ({{i.category.name}})</span></h3>
           {% endfor %}
