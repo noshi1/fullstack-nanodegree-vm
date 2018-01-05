@@ -127,8 +127,7 @@ def fbdisconnect():
     facebook_id = login_session['facebook_id']
     # The access token must me included to successfully logout
     access_token = login_session['access_token']
-    url = 'https://graph.facebook.com/%s/permissions?access_token=%s' %
-    (facebook_id, access_token)
+    url = 'https://graph.facebook.com/%s/permissions?access_token=%s' % (facebook_id, access_token)
     h = httplib2.Http()
     result = h.request(url, 'DELETE')[1]
     return "you have been logged out"
@@ -252,22 +251,22 @@ def getUserID(email):
 @app.route('/gdisconnect')
 def gdisconnect():
         """Only disconnect a connected user."""
-    access_token = login_session.get('access_token')
-    if access_token is None:
-        response = make_response(
+        access_token = login_session.get('access_token')
+        if access_token is None:
+            response = make_response(
             json.dumps('Current user not connected.'), 401)
         response.headers['Content-Type'] = 'application/json'
         return response
-    url = 'https://accounts.google.com/o/oauth2/revoke?token=%s' % access_token
-    h = httplib2.Http()
-    result = h.request(url, 'GET')[0]
-    if result['status'] == '200':
-        # Reset the user's sesson.
-        del login_session['access_token']
-        del login_session['gplus_id']
-        del login_session['username']
-        del login_session['email']
-        del login_session['picture']
+        url = 'https://accounts.google.com/o/oauth2/revoke?token=%s' % access_token
+        h = httplib2.Http()
+        result = h.request(url, 'GET')[0]
+        if result['status'] == '200':
+            # Reset the user's sesson.
+            del login_session['access_token']
+            del login_session['gplus_id']
+            del login_session['username']
+            del login_session['email']
+            del login_session['picture']
 
         # response = make_response(json.dumps('Successfully disconnected.'), 200)
         # response.headers['Content-Type'] = 'application/json'
