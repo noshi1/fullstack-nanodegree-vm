@@ -48,6 +48,7 @@ def showLogin():
 
 @app.route('/fbconnect', methods=['POST'])
 def fbconnect():
+    """ facebook login code """
     if request.args.get('state') != login_session['state']:
         response = make_response(json.dumps('Invalid state parameter.'), 401)
         response.headers['Content-Type'] = 'application/json'
@@ -122,6 +123,7 @@ def fbconnect():
 
 @app.route('/fbdisconnect')
 def fbdisconnect():
+    """ this code will logout facebook account """
     facebook_id = login_session['facebook_id']
     # The access token must me included to successfully logout
     access_token = login_session['access_token']
@@ -134,6 +136,7 @@ def fbdisconnect():
 
 @app.route('/gconnect', methods=['POST'])
 def gconnect():
+    """Gmail login code """
     # Validate state token
     if request.args.get('state') != login_session['state']:
         response = make_response(json.dumps('Invalid state parameter.'), 401)
@@ -224,7 +227,7 @@ def gconnect():
 
 
 def createUser(login_session):
-    """User Helper Functions"""
+    """User Helper Functions to create get user info"""
     newUser = User(name=login_session['username'], email=login_session[
                    'email'], picture=login_session['picture'])
     session.add(newUser)
@@ -248,7 +251,7 @@ def getUserID(email):
 
 @app.route('/gdisconnect')
 def gdisconnect():
-        # Only disconnect a connected user.
+        """Only disconnect a connected user."""
     access_token = login_session.get('access_token')
     if access_token is None:
         response = make_response(
