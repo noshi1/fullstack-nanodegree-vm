@@ -1,3 +1,10 @@
+"""This code is going build an Item Catalog application that provides a list
+of items within a variety of categories as well as
+provide a user registration and authentication system.
+Registered users will have the ability to post, edit
+and delete their own items. The application also
+provides the json endpoints."""
+
 """from geocode import getGeocodeLocation"""
 import json
 import httplib2
