@@ -28,7 +28,7 @@
         <h2>Latest Items</h2>
         <section class="content">
           {% for i in items %}
-            <h3>{{i.name}}</h3>
+            <h3><a href='{{url_for("showItem", category_id = i.category_id, item_id = i.id)}}'>{{i.name}}</a></h3>
           {% endfor %}
        </section>
 
