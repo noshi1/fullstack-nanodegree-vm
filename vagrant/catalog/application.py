@@ -23,6 +23,7 @@ from flask import make_response
 import requests
 from flask import Flask, render_template, url_for
 from flask import request, redirect, flash, jsonify
+from login_decorator import login_required
 
 app = Flask(__name__)
 
@@ -310,11 +311,10 @@ def showCatalog():
 
 
 @app.route('/catalog/new', methods=['GET', 'POST'])
+@login_required
 def newCategory():
     """add new category"""
     categories = session.query(Categories).all()
-    if 'username' not in login_session:
-        return redirect('/login')
     if request.method == 'POST':
         newCategory = Categories(name=request.form['name'], user_id=login_session['user_id'])
         session.add(newCategory)
@@ -326,12 +326,18 @@ def newCategory():
 
 
 @app.route('/catalog/<path:category_name>/edit',  methods=['GET', 'POST'])
+@login_required
 def editCategory(category_name):
     """edit existing category"""
     categories = session.query(Categories).all()
-    if 'username' not in login_session:
-        return redirect('/login')
     editcategory = session.query(Categories).filter_by(name=category_name).one()
+    # See if the logged in user is the owner of item
+    creator = getUserInfo(editcategory.user_id)
+    user = getUserInfo(login_session['user_id'])
+    # If logged in user != item owner redirect them
+    if creator.id != login_session['user_id']:
+        flash ("You cannot edit this Category. This Category belongs to %s" % creator.name)
+        return redirect(url_for('showCatalog'))
     if request.method == 'POST':
         if request.form['name']:
             editcategory.name = request.form['name']
@@ -343,12 +349,18 @@ def editCategory(category_name):
 
 
 @app.route('/catalog/<path:category_name>/delete', methods=['GET', 'POST'])
+@login_required
 def deleteCategory(category_name):
     """delete a category"""
     categories = session.query(Categories).all()
-    if 'username' not in login_session:
-        return redirect('/login')
     deletecategory = session.query(Categories).filter_by(name=category_name).first()
+    # See if the logged in user is the owner of item
+    creator = getUserInfo(deletecategory.user_id)
+    user = getUserInfo(login_session['user_id'])
+    # If logged in user != item owner redirect them
+    if creator.id != login_session['user_id']:
+        flash ("You cannot delete this Category. This Category belongs to %s" % creator.name)
+        return redirect(url_for('showCatalog'))
     if request.method == 'POST':
             session.delete(deletecategory)
             session.commit()
@@ -371,10 +383,9 @@ def showCategoryItems(category_id):
 
 
 @app.route('/catalog/newItem', methods=['GET', 'POST'])
+@login_required
 def newCategoryItem():
     """add new items"""
-    if 'username' not in login_session:
-        return redirect('/login')
     categories = session.query(Categories).all()
     if request.method == 'POST':
         newItem = Items(
@@ -403,13 +414,20 @@ def showItem(category_id, item_id):
 
 
 @app.route('/catalog/<int:category_id>/<int:item_id>/edit/', methods=['GET', 'POST'])
+@login_required
 def editItem(category_id, item_id):
     """edit an item"""
-    if 'username' not in login_session:
-        return redirect('/login')
     categories = session.query(Categories).all()
     category = session.query(Categories).filter_by(id=category_id).one()
     editItem = session.query(Items).filter_by(id=item_id).one()
+    # See if the logged in user is the owner of item
+    creator = getUserInfo(editItem.user_id)
+    user = getUserInfo(login_session['user_id'])
+    # If logged in user != item owner redirect them
+    if creator.id != login_session['user_id']:
+        flash ("You cannot edit this Category. This Category belongs to %s" % creator.name)
+        return redirect(url_for('showCatalog'))
+    # Post method
     if request.method == 'POST':
         if request.form['name']:
             editItem.name = request.form['name']
@@ -424,13 +442,19 @@ def editItem(category_id, item_id):
 
 
 @app.route('/catalog/<int:category_id>/<int:item_id>/delete', methods=['GET', 'POST'])
+@login_required
 def deleteItem(category_id, item_id):
     """delete an item"""
-    if 'username' not in login_session:
-        return redirect('/login')
     categories = session.query(Categories).all()
     category = session.query(Categories).filter_by(id=category_id).one()
     deletedItem = session.query(Items).filter_by(id=item_id).one()
+    # See if the logged in user is the owner of item
+    creator = getUserInfo(deletedItem.user_id)
+    user = getUserInfo(login_session['user_id'])
+    # If logged in user != item owner redirect them
+    if creator.id != login_session['user_id']:
+        flash ("You cannot edit this Category. This Category belongs to %s" % creator.name)
+        return redirect(url_for('showCatalog'))
     if request.method == 'POST':
         session.delete(deletedItem)
         session.commit()

@@ -16,6 +16,7 @@
       <aside class="categories">
         <h2>Categories</h2>
         <section class="category">
+          <a class="add_category" href='{{url_for("newCategory", categories = categories)}}'>Add Category</a>
           <p>Please <a href='{{url_for('showLogin')}}'>Login</a> to create your Categories</p>
           {% for category in categories %}
           <h3><a href='{{url_for("showCategoryItems", category_id = category.id )}}'>{{category.name}}</a></h3>

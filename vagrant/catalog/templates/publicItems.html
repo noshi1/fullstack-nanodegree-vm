@@ -26,6 +26,13 @@
       <section class="details">
         <h2>{{category.name}} Items</h2>
         <section class="content">
+          <div class="update">
+            <a href = '{{url_for("newCategoryItem")}}'>New Item</a>
+            <a href='{{url_for("editCategory", category_name = category.name)}}'>Edit Category</a>
+            <a href='{{url_for("deleteCategory", category_name = category.name)}}'>Delete Category</a>
+            <a href='{{url_for("showCategoryJson", category_id = category.id)}}'>Category Json</a>
+          </div>
+          {% include "flash.html" %}
           {% for i in items %}
           <h3><a href='{{url_for("showItem", category_id = category.id, item_id = i.id)}}'>{{i.name}}</a></h3>
           {% endfor %}

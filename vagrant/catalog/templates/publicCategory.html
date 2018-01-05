@@ -1,9 +1,7 @@
 <aside class="categories">
   <h2>Categories</h2>
   <section class="category">
-    {% if 'username' in login_session %}
     <a class="add_category" href='{{url_for('newCategory', categories = categories)}}'>Add Category</a>
-    {% endif %}
     {% for category in categories %}
     <h3><a href='{{url_for('showCategoryItems', category_id = category.id )}}'>{{category.name}}</a></h3>
     {% endfor %}
