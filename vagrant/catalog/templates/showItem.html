@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel=stylesheet href="{{url_for('static', filename='css/styles.css')}}">
+  <title>Sports</title>
+</head>
+<body>
+  <section class="container">
+    <!-- header goes here -->
+    {% include "header.html" %}
+
+    <main>
+      <!-- this sidebar show all categories -->
+
+      <aside class="categories">
+        <h2>Categories</h2>
+        <section class="category">
+          {% if 'username' in session %}
+          <a class="add_category" href='{{url_for("newCategory", categories = categories)}}'>Add Category</a>
+          {% endif %}
+          {% for category in categories %}
+          <h3><a href='{{url_for("showCategoryItems", category_id = category.id )}}'>{{category.name}}</a></h3>
+          {% endfor %}
+        </section>
+      </aside>
+
+      <!-- it is main area that show details of all items -->
+      <section class="details">
+
+          <h2>{{item.name}}</h2>
+          <section class="content">
+            <p class="item_detail">{{item.description}}</p>
+            <div class="edit_links">
+              <a class="" href='{{url_for("editItem", category_id = category_id, item_id = item_id)}}'>Edit</a>
+              <a class="delete" href='{{url_for("deleteItem", category_id = category_id, item_id = item.id)}}'>Delete</a>
+              <a class="delete" href='{{url_for("showItemJson", category_id = category.id, item_id = item.id)}}'>Json</a>
+          </div>
+          </section>
+
+      </section>
+    </main>
+    <!-- footer goes here -->
+    {% include "footer.html" %}
+  </section>
+</body>
+</html>

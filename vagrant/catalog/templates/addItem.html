@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel=stylesheet href="{{url_for('static', filename='css/styles.css')}}">
+  <title>Sports</title>
+</head>
+<body>
+  <section class="container">
+    <!-- header goes here -->
+    {% include "header.html" %}
+
+    <main>
+
+      <!-- this sidebar show all categories -->
+      <aside class="categories">
+        <h2>Categories</h2>
+        <section class="category">
+          {% if 'username' in session %}
+          <a class="add_category" href='{{url_for("newCategory", categories = categories)}}'>Add Category</a>
+          {% endif %}
+          {% for category in categories %}
+          <h3><a href='{{url_for("showCategoryItems", category_id = category.id )}}'>{{category.name}}</a></h3>
+          {% endfor %}
+        </section>
+      </aside>
+
+      <!-- it is main area that show details of all items -->
+      <section class="details">
+        <h2>Add new item</h2>
+        <section class="content">
+          <form action="{{url_for('newCategoryItem')}}" method = 'POST'>
+          <label>Name:</label><br>
+          <input type='text' size='30' name='name'/><br><br>
+          <label>Description</label><br>
+          <textarea cols="20" rows="5" wrap="" name='description'></textarea><br><br>
+          <label>Category</label><br>
+          <select class="form__select" name="category">
+                {% for category in categories %}
+                  <option value="{{category.id}}">{{category.name}}</option>
+                {% endfor %}
+          </select><br><br>
+          <input type='submit' value='Add'>
+        </form>
+      </section>
+    </section>
+  </main>
+    <!-- footer goes here -->
+    {% include "footer.html" %}
+  </section>
+</body>
+</html>

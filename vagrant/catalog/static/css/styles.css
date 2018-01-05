@@ -1,0 +1,189 @@
+body, html {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+}
+
+body {
+  font-family: "Open Sans", sans-serif;
+  font-size: 12px;
+  color: #424242;
+  margin: auto;
+}
+
+h1, h2, h3, h4, h5 {
+  margin: 0;
+}
+
+header, nav, footer, section, article, div {
+  box-sizing: border-box;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+/* container */
+.container{
+  width: 95%;
+  margin: auto;
+}
+a{
+  text-decoration: none;
+  color: black;
+}
+/* header styling */
+header{
+  width: 100%;
+  font-family: "Open Sans", sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 1.75em;
+  margin-bottom: 1.75em;
+  flex-direction: row;
+  background-color: sandybrown;
+}
+header h1{
+  width: 50%;
+  padding-left: 15px;
+  font-size: 25px;
+}
+header h1 a{
+  color: brown;
+}
+head h1 a:hover{
+  color: white;
+}
+/* login and logout links on top of page with header */
+.top_links{
+  display: flex;
+    width: 50%;
+    justify-content: flex-end;
+    line-height: 1.375em;
+    align-items: flex-end;
+    font-size: 20px;
+}
+.top_links a{
+  color: white;
+  padding: 5px;
+  background-color: brown;
+  margin: 5px;
+  text-align: center;
+}
+.top_links a:hover{
+  color: brown;
+  background-color: white;
+}
+/* mian section styling */
+main{
+  display: flex;
+  border: solid sandybrown;
+}
+main h2{
+  background-color: brown;
+  color: white;
+  padding: 20px;
+}
+main h3, h4{
+  font-weight: 400;
+}
+main h3{
+  font-size: 1.3em;
+}
+/* aside styling inside main */
+.categories{
+  width: 35%;
+  border-right: solid sandybrown;
+  text-align: justify;
+  font-size: 0.8rem;
+}
+.add_category{
+  color: brown;
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+.add_category:hover{
+  text-decoration: underline;
+}
+.category{
+  padding: 20px;
+}
+/* flash message styling */
+.flash_message{
+  text-align: center;
+  font-weight: 600;
+  color: brown;
+}
+/* details section styling */
+.details{
+  width: 75%;
+}
+.content{
+  padding: 18px;
+}
+.item_detail{
+  font-size: 16px;
+  margin: 0;
+}
+.edit_links{
+  margin-top: 1em;
+}
+.edit_links a{
+  margin-top: 7px;
+  font-weight: bold;
+}
+.edit_links a:hover{
+  color: brown;
+  text-decoration: underline;
+}
+.delete{
+  border-left: solid brown;
+  padding-left: 4px;
+}
+.update{
+  margin-bottom: 10px;
+}
+.update a, .cancel{
+  color: white;
+  padding: 5px;
+  background-color: brown;
+  text-align: center;
+}
+.update a{
+  margin: 5px;
+}
+.cancel:hover{
+  background-color: sandybrown;
+}
+.update a:hover{
+  background-color: black;
+  color: white;
+}
+.label{
+  margin-bottom: 1rem;
+}
+.submit{
+  margin-top: 10px;
+}
+.sure{
+  font-size: 1.5rem;
+}
+/* footer */
+footer{
+  display: flex;
+  flex-wrap: wrap;
+  color: white;
+  font-style: italic;
+  justify-content: space-around;
+  margin-top: 1.30em;
+  font-size: 1rem;
+  background-color: sandybrown;
+}
+footer a{
+  color: brown;
+}
+span{
+  font-weight: bold;
+}

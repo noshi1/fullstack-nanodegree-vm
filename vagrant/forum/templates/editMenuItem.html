@@ -1,0 +1,32 @@
+<html>
+<head>
+  <link rel=stylesheet href="#">
+</head>
+<body>
+  <header>
+    <h1>Edit Menu Item</h1>
+  <main>
+
+    <form action='{{url_for('editMenuItem', restaurant_id = restaurant_id, menu_id=item.id)}} method = 'POST'>
+
+    <p>Name:</p>
+    <input type = 'text' size='30' name = 'name' placeholder = '{{item.name}}'>
+    <p>Course:</p>
+    <input type = 'text' size='30' name = 'course' placeholder = '{{item.course}}'>
+    <p>Description:</p>
+    <input type = 'text' size='30' name = 'description' placeholder = '{{item.description}}'>
+    <p>Price</p>
+    <input type = 'text' size='30' name = 'price' placeholder = '{{item.price}}'>
+
+    <input type='submit' value='Edit'>
+    </form>
+    <a href= '#'>Cancel</a>
+    </body>
+
+    </form>
+
+</main>
+
+</body>
+
+</html>

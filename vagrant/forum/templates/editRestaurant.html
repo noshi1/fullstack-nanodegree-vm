@@ -1,0 +1,25 @@
+<html>
+<head>
+  <link rel=stylesheet href="#">
+</head>
+<body>
+  <header>
+    <h1>Edit Restaurant</h1>
+  <main>
+
+    <form action='{{url_for('editRestaurant', restaurant_id = restaurant_id, restaurant = restaurant)}}' method = 'POST'>
+
+    <p>Name:</p>
+    <input type = 'text' size='30' name = 'name' placeholder = '{{restaurant.name}}'>
+    <input type='submit' value='Edit'>
+    </form>
+    <a href= '#'>Cancel</a>
+    </body>
+
+    </form>
+
+</main>
+
+</body>
+
+</html>
