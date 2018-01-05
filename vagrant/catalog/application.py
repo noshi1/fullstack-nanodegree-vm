@@ -112,7 +112,9 @@ def fbconnect():
     output += '!</h1>'
     output += '<img src="'
     output += login_session['picture']
-    output += ' <" style = "width: 300px; height: 300px;border-radius: 150px;-webkit-border-radius: 150px;-moz-border-radius: 150px;"> '
+    output += """ <" style = "width: 300px;
+    height: 300px;border-radius: 150px;
+    -webkit-border-radius: 150px;-moz-border-radius: 150px;"> """
 
     flash("Now logged in as %s" % login_session['username'])
     return output
@@ -123,7 +125,8 @@ def fbdisconnect():
     facebook_id = login_session['facebook_id']
     # The access token must me included to successfully logout
     access_token = login_session['access_token']
-    url = 'https://graph.facebook.com/%s/permissions?access_token=%s' % (facebook_id, access_token)
+    url = 'https://graph.facebook.com/%s/permissions?access_token=%s' %
+    (facebook_id, access_token)
     h = httplib2.Http()
     result = h.request(url, 'DELETE')[1]
     return "you have been logged out"
@@ -269,9 +272,8 @@ def gdisconnect():
             response = redirect(url_for('showCatalog'))
             return response
         else:
-        # For whatever reason, the given token was invalid.
-            response = make_response(json.dumps(
-            'Failed to revoke token for given user.', 400))
+            # For whatever reason, the given token was invalid.
+            response = make_response(json.dumps('Failed to revoke token for given user.', 400))
             response.headers['Content-Type'] = 'application/json'
             return response
 
