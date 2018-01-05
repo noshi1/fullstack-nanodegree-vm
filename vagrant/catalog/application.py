@@ -267,7 +267,6 @@ def gdisconnect():
         # response.headers['Content-Type'] = 'application/json'
         if 'username' not in login_session:
             response = redirect(url_for('showCatalog'))
-            flash("You are now logged out.")
             return response
         else:
         # For whatever reason, the given token was invalid.
