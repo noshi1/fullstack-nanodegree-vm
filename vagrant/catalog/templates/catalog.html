@@ -32,10 +32,9 @@
         <section class="content">
           {% include "flash.html" %}
           {% for i in items %}
-            <h3>{{i.name}}</h3>
+            <h3><a href='{{url_for("showItem", category_id = i.category_id, item_id = i.id)}}'>{{i.name}}</a></h3>
           {% endfor %}
        </section>
-
       </section>
     </main>
     <!-- footer goes here -->
