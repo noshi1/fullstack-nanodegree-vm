@@ -15,10 +15,10 @@ When all these tools are installed run these command in your terminal.
 
 ## Setup
 To setup you need to fork and clone this repository:
-* [ fullstack-nanodegree-vm ]()
+* [ fullstack-nanodegree-vm ](https://github.com/noshi1/fullstack-nanodegree-vm)
 
 ## Run
-From your terminal cd to the folder where did you clone fullstack-nanodegree-vm repository. Then access the shell with:
+From your terminal cd to the folder where did you clone [fullstack-nanodegree-vm](https://github.com/noshi1/fullstack-nanodegree-vm) repository. Then access the shell with:
 
  * vagrant up
 
