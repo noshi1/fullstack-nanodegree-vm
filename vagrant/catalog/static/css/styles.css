@@ -123,6 +123,10 @@ main h3{
 .content{
   padding: 18px;
 }
+.content h3 span{
+  color: sandybrown;
+  font-weight: normal;
+}
 .item_detail{
   font-size: 16px;
   margin: 0;
